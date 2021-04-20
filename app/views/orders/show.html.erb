@@ -1,0 +1,111 @@
+
+
+<div id="itemsContainer">
+<p id="notice"><%= notice %></p>
+<h1>Order Details</h1>
+<table id="customers">
+ <tr>
+ <td>Order date:</td>
+ <td>Ordered By</td>
+ <td>Staus:</td>
+ </tr>
+
+ <tr>
+ <td><%= @order.order_date %></td>
+ <td><%= @order.user.email %></td>
+ <td><%= @order.status %></td>
+ </tr>
+
+ <tr>
+  <% if session[:login] == 1 %> 
+ <td><%= link_to 'Edit', edit_order_path(@order), :class =>"button" %></td>
+  <% end %>
+  
+ <td><%= link_to 'Back', orders_path, :class =>"button" %> </td>
+ 
+ 
+
+
+ 
+  <td> <%if @order.status =='Pending' %>
+        <a href="/checkout/" class="button">Checkout</a>
+      <% end %>
+    </td>
+
+ </tr>
+ </table>
+ <%# if @order.user.email == @user.email %>
+<%#else %>
+
+<!--<h1>You did not place this order</h1> -->
+<%# end %>
+  <%#@users.each  do |user| %>
+ <%# @order.each do |order| %>
+ <% if session[:login] == 1 || @order.user.email == current_user.email  %>
+  <%#if session[:login] == 1 || order.user_id == orderclass.order.user_id  && order.user == current_user%>
+  <%# if session[:login] == 1 || order.user_id == orderclass.o && order.user == current_user%>
+ <h2>Order Items</h2>
+<table id="customers">
+ <tr>
+ <td>Class Available date and hours:</td>
+ <td>Class Name:</td>
+ <td>Order Id:</td>
+  <td>Order Quantity:</td>
+  <td>Order Price:</td>
+ </tr>
+ 
+ <% @total = 0 %>
+ 
+ <% @orderclasses.each do |orderclass| %>
+ <%# @users.each do |user| %>
+
+ <%# if session[:login] == 1 || @users.order(:user_id) == @users.order(:user_id)%>
+ <%if session[:login] == 1 || @order.user_id == orderclass.order.user_id  && @order.user == current_user%>
+  <%#if session[:login] == 1 || order.user.order_id == orderclass.order_id%>
+ 
+ <tr>
+ <td><%= orderclass.hourAndDateAvailable %></td>
+ <td><%= orderclass.name %></td>
+ <td><%= orderclass.order_id %></td>
+ <td><%= orderclass.quantity %></td>
+ <td><%= orderclass.price %></td>
+ 
+ 
+    
+  <% gTotal =(orderclass.quantity* orderclass.price) %>
+  <% @total += gTotal %> 
+    
+    <tr>
+
+ </tr>
+ <% end %>
+ <% end %>
+  <%end %>
+    
+     <td>Order Total: €<%= @total %> </td>
+    <% @overall = @total %>
+    <td>Overall Order Total: <%= number_to_currency(@overall, :unit => "€") %></td>
+  
+  
+   <%# end %>
+    <%# end %>
+ <tr></tr>
+ </table>
+
+ </div> 
+ 
+   <%# IF STAUS IS PENDING THEN BUY THE ITEM %>
+  <td> <%if @order.status =='Pending' %>
+ <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="elenhtzafai2016@gmail.com">
+    <input type="hidden" name="item_name" value="Fitness Class Order Number <%= @orderNum %>">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="hidden" name="amount" value="<%= @overall %>">
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+    <input type="hidden" name="return" value="https://60044bc905af422ab31c4532c46d1ce8.vfs.cloud9.us-east-1.amazonaws.com/aboutSend/<%= @orderNum %>" >
+    <input type="hidden" name="notify_url" value="https://60044bc905af422ab31c4532c46d1ce8.vfs.cloud9.us-east-1.amazonaws.com/aboutSend/<%= @orderNum %>">
+</form> 
+
+      <% end %>
+    </td>

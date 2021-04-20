@@ -1,0 +1,46 @@
+<h2>You Searched For Our Fitness Classes<%= @search_term %></h2>
+<% if  @fitness_classes.length == 0 %> 
+<br />
+<h2>No products were found to match your search</h2>
+<% end %>
+<table class="fitness_class">
+ <% @fitness_classes.each do |fitness_class| %>
+ 
+ <tr>
+ <td>
+ <div class="image">
+ <%= link_to (image_tag fitness_class.image_url, :style => "height:100px"), fitness_class%>
+ </div>
+ <div class="name">
+ <%= link_to fitness_class.name, fitness_class %>
+ </div>
+ <div class="offerdBy">
+ <%= fitness_class.offerdBy %>
+ </div>
+ <div class="address">
+ <%= fitness_class.address %>
+ </div>
+ <div class="hourAndDateAvailable">
+ <%= fitness_class.hourAndDateAvailable %>
+ </div>
+ <div class="price">
+ <%= number_to_currency(fitness_class.price, :unit => "€") %>
+ </div>
+ <div class="links">
+ <% if user_signed_in? %>
+  <a href="/cart/<%= fitness_class.id %>">Add to Cart</a>
+ <%else%>
+ <%end%>
+ 
+ <%= link_to 'Back', fitness_classes_path %>
+ <% if session[:login] == 1 %>    
+<%= link_to 'Destroy', fitness_class, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_fitness_class_path(fitness_class) %>
+<%end%>
+
+ 
+ </div>
+ </td>
+ </tr>
+ <% end %>
+</table>

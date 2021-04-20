@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fitness Classes <%= yield (:title) %></title>
+    
+    <%= csrf_meta_tag %>
+    
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "daterangepicker_initializer.js" %>
+    <script type="text/javascript" src="assets/liam.js"></script>
+    
+  </head>
+
+ 
+  <body>
+   
+    <%= render 'layouts/header' %>
+
+    <div class="container">
+      <div id="content">
+        
+        
+        
+  <!-- Throw the Error message  for invaild password -->   
+  <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+ <% end %>
+      
+        <%= yield %>
+      </div>
+      <div id="first-column">
+         
+        
+          <div class="searchbox">
+            <h2 class="BoxHeaders">Search For Your Intrested Fitness Class!! ...</h2>
+            
+      
+          <%=render 'layouts/search'%>
+
+
+
+          </div>
+      </div>
+   </div>
+ 
+  <%= render 'layouts/footer' %>
+
+  </body>
+</html>
+

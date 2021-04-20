@@ -1,0 +1,62 @@
+
+  
+     
+ <h1> <header class="headSec">
+<div class="hrow">
+
+    <%= image_tag "back.jpg", style: 'height:1%;width:10%;' %>
+
+
+    <%#= image_tag "back.jpg", style: 'height:100%;width:auto;' %>
+    <%#= image_tag "back.jpg", style: 'height:100%;width:auto;' %>
+    <%#= image_tag "back.jpg", style: 'height:100%;width:auto;' %>
+    <%#= image_tag "back.jpg", style: 'height:100%;width:auto;' %>
+    <%#= image_tag "back.jpg", style: 'height:100%;width:auto;' %>
+    <%#= image_tag "hit.jpg", style: 'height:100%;width:auto;' %>
+    <%#= image_tag "yoga.jpg" , style: 'height:100%;width:auto;'%>
+
+ <div class="headertext">Fcl, Fitness Classes in Limerick</div></div></h1></h1>
+       
+      <ul>
+        <li><%= link_to "Home",  "/" %></li>
+        <li><%= link_to "Fitness Classes", fitness_classes_path %></li>
+       
+ 
+          <% if user_signed_in? || session[:login] == 1 %>
+            <%#if user_session.equal? gym %>
+            
+           <li><%= link_to "View Orders", orders_path %></li>
+          
+     
+          
+        <% end %>
+          
+          
+         <% if user_signed_in? %>
+         
+           
+           
+        <li><%= link_to "View Cart", cart_path %></li>
+      
+              
+            
+        
+                 <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+                 <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+                 <li><%= link_to 'Register', new_user_registration_path %></li> 
+                 <li><%= link_to 'Sign in', new_user_session_path %></li>
+          <% end %>
+
+         
+        <% if session[:login] == 1 %>    
+          <li><%= link_to "Admin Log Out",   logout_path %></li>
+        <% else %>
+          <li><%= link_to "Admin Log In",   login_path %></li>
+        <% end %>
+        
+        
+      </ul>
+      
+   
+   </header>

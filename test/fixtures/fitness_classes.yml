@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image_url: MyString
+  name: MyString
+  offerdBy: MyString
+  address: MyString
+  hourAvailable: 1
+  dateAvailable: 2021-02-28
+  price: 9.99
+
+two:
+  image_url: MyString
+  name: MyString
+  offerdBy: MyString
+  address: MyString
+  hourAvailable: 1
+  dateAvailable: 2021-02-28
+  price: 9.99

@@ -1,0 +1,44 @@
+
+<div id="itemsContainer">
+<p id="notice"><%= notice %></p>
+<h1>Order Details</h1>
+<table id="customers">
+ <tr>
+ <td>Order date:</td>
+ <td>Ordered By</td>
+ <td>Staus:</td>
+ </tr>
+
+ <tr>
+ <td><%= @order.order_date %></td>
+ <td><%= @order.user %></td>
+ <td><%= @order.status %></td>
+
+ </tr>
+
+ <tr>
+ <td><%= link_to 'Edit', edit_order_path(@order), :class =>"button" %></td>
+ <td><%= link_to 'Back', orders_path, :class =>"button" %></td>
+
+ </tr>
+ </table>
+ <% if @order.user.email == @user.email %>
+<% else %>
+
+<h1>You did not place this order</h1>
+<% end %>
+ <h2>Your Booked classes</h2>
+<table id="customers">
+ <% @orderclasses.each do |orderclass| %>
+ <tr>
+ <td><%= orderclass.created_at %></td>
+ <td><%= orderclass.name %></td>
+ <td><%= orderclass.order_id %></td>
+
+ </tr>
+ <% end %>
+ <tr></tr>
+ </table>
+
+ </div> 
+

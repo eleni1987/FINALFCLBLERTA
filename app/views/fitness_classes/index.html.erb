@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+ <div id="itemsContainer">
+   <table id="ftc" style= "background-color:#BEBEBE; border:none; border-color:none;">
+  <h1>Fitness Classes</h1>
+  
+  
+   <tr style= "background-color:#4CAF50"><td>Class Look Like!!!</td><td>Fitness Class Name</td><td>Fitness Class Offered From</td><td>Where The Class Will Happen</td><td>Date And Hours for The Class</td><td>Price</td><td>Perform Your Actions</td></tr>
+ <tr>
+     
+      <% @fitness_classes.each do |fitness_class| %>
+      <!--<div class="itemhols">-->
+      
+     
+      <tr>
+      <td class="image_url"><%= link_to   (image_tag fitness_class.image_url, :class => "itemholsIm") %></td>
+      
+      
+       <td class="name"><%= link_to fitness_class.name, fitness_class %></td>
+       <td class="offerdBy"><%= link_to fitness_class.offerdBy, fitness_class %></td>
+       <td class="address"><%= link_to fitness_class.address, fitness_class %></td>
+       <td class="hourAndDateAvailable"><%= link_to fitness_class.hourAndDateAvailable, fitness_class %></td>
+       <td class="price"><%= link_to fitness_class.price, fitness_class %></td>
+     
+     
+       
+       <p>
+       
+         <td><%= link_to 'Show', fitness_class, :class => "button", :role => "button" %></td>
+        <%# if not user_signed_in?  %> 
+        <% if not user_signed_in? && session[:login] != 1 %> 
+       
+         <td><%= link_to 'Add To Cart',new_user_session_path, :class => "button", :role => "button", 
+         data: { confirm: 'SORRY YOU NEED TO lOGIN FIRST TO PERFORM YOUR BOOKING' } %>
+      
+         </li><% end %></td>
+
+           
+           <td>  <% if user_signed_in?  %> 
+          <a href="/cart/<%= fitness_class.id %>" class="button">Add To Cart</a>
+          
+         <% end %></td>
+
+         <td>
+         <% if session[:login] == 1 %>    
+           <%= link_to 'Edit', edit_fitness_class_path(fitness_class),:class => "button", :role => "button"%>
+           <td>
+           <%= link_to 'Destroy',  fitness_class, method: :delete, data: { confirm: 'Are you sure?' }, :class => "button", :role => "button" %></td>
+ 
+        <% end %></td>
+       </p>
+        
+     <!-- </div>-->
+     
+    <% end %>
+     </tr>
+     </table> 
+</div>
+
+<br>
+
+  
+   
+ <% if session[:login] == 1 %>  
+
+  <%= link_to 'New Fitness Class', new_fitness_class_path, :class => "button", :role => "button" %>
+  
+<%end %>

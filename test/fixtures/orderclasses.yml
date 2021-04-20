@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fitness_class_id: 1
+  name: MyString
+  adress: MyString
+  hourAndDateAvailable: 2021-03-20 20:11:28
+  quantity: 1
+  price: 9.99
+  order: one
+
+two:
+  fitness_class_id: 1
+  name: MyString
+  adress: MyString
+  hourAndDateAvailable: 2021-03-20 20:11:28
+  quantity: 1
+  price: 9.99
+  order: two

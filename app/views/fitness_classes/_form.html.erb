@@ -1,0 +1,65 @@
+
+  
+<%= form_for(@fitness_class, local: true) do |form| %>
+  <% if fitness_class.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fitness_class.errors.count, "error") %> prohibited this fitness_class from being saved:</h2>
+
+      <ul>
+      <% fitness_class.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :image_url %>
+    <%= form.text_field :image_url, id: :item_image_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :fitness_class, :type =>"text" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :offerdBy %>
+    <%= form.text_field :offerdBy, id: :offerdBy, :type =>"text" %>
+  </div>
+  
+  
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :address, :type =>"text" %>
+  </div>
+
+
+
+
+  <div class="field">
+    <%= form.label :hourAndDateAvailable %>
+    <%= form.datetime_field :hourAndDateAvailable, id: :hourAndDateAvailable %> 
+  </div>
+
+
+  <div class="field">
+    <%= form.label :price %>
+    <%#= form.text_field :price, id: :price, :type =>"text" %>
+    <%#= form.number_field :price, value: number_to_currency(form.object.amount.forum, delimiter: '', unit: ''), step: :any%>
+   
+    <%#= form.number_field :price, :step => 0.01%>
+    <%= form.number_field :price, step: :any, :required => true, :class => 'price-field', :placeholder => "Price", :value => number_with_precision(form.object.price,precision: 2,  strip_insignificant_zeros: true) %>
+   
+   
+   
+    
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
